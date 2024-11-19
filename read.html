@@ -33,20 +33,29 @@
                 <a class="nav-link" href="/message">Send message</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/read">View message</a>
+                <a class="nav-link active" aria-current="page" href="/read">View message</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-
-      <div class="p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal">404</h1>
-        <p class="fs-5 text-muted">
-          Not Found
-        </p>
-      </div>
     </header>
+    <div class="container mt-3">
+        <main class="form-signin w-75 m-auto">
+          <h1 class="h3 mb-3 fw-normal">Messages</h1>
 
+          <ul class="list-group">
+            {% if messages %}
+              {% for timestamp, entry in messages.items() %}
+                  <li class="list-group-item">
+                      <strong>{{ timestamp }}</strong>: {{ entry.username }} - {{ entry.message }}
+                  </li>
+              {% endfor %}
+          {% else %}
+              <li class="list-group-item">No messages found.</li>
+          {% endif %}
+          </ul>
+        </main>
+      </div>
   </body>
 </html>
